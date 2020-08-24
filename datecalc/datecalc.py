@@ -37,21 +37,28 @@ def calculate_delta(from_date, to_date):
     return f"{rdelta.years} years, {int(rdelta.months)} months and {rdelta.days} days"
 
 
-if len(sys.argv) == 3:
-    if "=" in sys.argv[2]:
-        print(apply_delta(parse(sys.argv[1]).date(), sys.argv[2]))
-    else:
-        to_date, from_date = sorted(
-            [parse(sys.argv[1]).date(), parse(sys.argv[2]).date()]
-        )
+def main():
+    if len(sys.argv) == 3:
+        if "=" in sys.argv[2]:
+            print(apply_delta(parse(sys.argv[1]).date(), sys.argv[2]))
+        else:
+            to_date, from_date = sorted(
+                [parse(sys.argv[1]).date(), parse(sys.argv[2]).date()]
+            )
 
-        print(calculate_delta(from_date, to_date))
-elif len(sys.argv) == 2:
-    if "=" in sys.argv[1]:
-        print(apply_delta(datetime.now().date(), sys.argv[1]))
-    else:
-        to_date, from_date = sorted([parse(sys.argv[1]).date(), datetime.now().date()])
+            print(calculate_delta(from_date, to_date))
+    elif len(sys.argv) == 2:
+        if "=" in sys.argv[1]:
+            print(apply_delta(datetime.now().date(), sys.argv[1]))
+        else:
+            to_date, from_date = sorted(
+                [parse(sys.argv[1]).date(), datetime.now().date()]
+            )
 
-        print(calculate_delta(from_date, to_date))
-else:
-    print("no input")
+            print(calculate_delta(from_date, to_date))
+    else:
+        print("no input")
+
+
+if __name__ == "__main__":
+    main()
